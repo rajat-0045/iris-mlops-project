@@ -5,6 +5,8 @@ from sklearn.metrics import accuracy_score
 import mlflow
 import mlflow.sklearn
 
+mlflow.set_tracking_uri("file:./mlruns")
+
 def main():
     # Load data
     df = pd.read_csv("data/iris.csv")

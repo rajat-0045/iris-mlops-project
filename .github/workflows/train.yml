@@ -1,0 +1,28 @@
+name: Train Iris Model
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install scikit-learn pandas mlflow
+
+      - name: Run training script
+        run: |
+          export MLFLOW_TRACKING_URI="file:./mlruns"
+          python src/train.py

@@ -24,4 +24,5 @@ jobs:
 
       - name: Run training script
         run: |
+          export MLFLOW_TRACKING_URI="file:./mlruns"
           python src/train.py

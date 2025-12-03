@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/racha/Desktop/iris-mlops-project/mlruns/599143333108700354/models/m-6fbcca6d57104dd5b0e4c7a1e57095cd/artifacts
+creation_timestamp: 1764751656454
+experiment_id: '599143333108700354'
+last_updated_timestamp: 1764751662971
+model_id: m-6fbcca6d57104dd5b0e4c7a1e57095cd
+model_type: null
+name: model
+source_run_id: 7b4a653156f641d29654b79c582df379
+status: 2
+status_message: null

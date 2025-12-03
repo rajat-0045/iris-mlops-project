@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import mlflow
 import mlflow.sklearn
 
@@ -20,6 +20,10 @@ def main():
     mlflow.set_experiment("iris-mlops-project")
 
     with mlflow.start_run():
+        mlflow.log_param("n_estimators", 100)
+        mlflow.log_param("max_depth", 5)
+        mlflow.set_tag("note", "Baseline RandomForest on Iris")
+
         model = RandomForestClassifier(
             n_estimators=100,
             max_depth=5,
@@ -29,9 +33,16 @@ def main():
 
         preds = model.predict(X_test)
         acc = accuracy_score(y_test, preds)
+        precision = precision_score(y_test, preds, average="macro")
+        recall = recall_score(y_test, preds, average="macro")
+        f1 = f1_score(y_test, preds, average="macro")
 
         mlflow.log_metric("accuracy", acc)
+        mlflow.log_metric("precision_macro", precision)
+        mlflow.log_metric("recall_macro", recall)
+        mlflow.log_metric("f1_macro", f1)
         print(f"Accuracy: {acc:.4f}")
+
 
 if __name__ == "__main__":
     main()
